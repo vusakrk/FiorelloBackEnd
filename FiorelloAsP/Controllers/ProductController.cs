@@ -33,9 +33,10 @@ namespace FiorelloAsP.Controllers
         }
         public IActionResult GetBasketCount()
         {
-            List<BasketVM> basket = JsonConvert.DeserializeObject<List<BasketVM>>(Request.Cookies["basket"]);
+            List<BasketVM> basket = JsonConvert.DeserializeObject<List<BasketVM>>(HttpContext.Request.Cookies["basket"]);
             return Content(basket.Count.ToString());
         }
+        
         public async Task<IActionResult> AddToBasket(int id)
         {
 
@@ -45,7 +46,8 @@ namespace FiorelloAsP.Controllers
             List<BasketVM> basket = new List<BasketVM>();
             if (Request.Cookies["basket"] != null)
             {
-                basket = JsonConvert.DeserializeObject<List<BasketVM>>(Request.Cookies["basket"]);
+                basket = JsonConvert.DeserializeObject<List<BasketVM>>(HttpContext.Request.Cookies["basket"]);
+                
             }
             else
             {
