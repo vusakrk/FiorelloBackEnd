@@ -33,7 +33,7 @@ $(document).ready(function () {
         type: 'GET',
         success: function (res) {
             basketCount.text(res);
-            console.log(res);
+            
         }
         
     });

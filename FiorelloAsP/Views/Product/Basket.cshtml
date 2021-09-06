@@ -3,26 +3,25 @@
 @{ ViewData["Title"] = "Basket"; }
 @if (ViewBag.BasketCount == 0)
 {
-<p class="text-center my-5" style="font-size : 45px">Your basket is Empty!</p> }
-            else
-            {
+<p class="text-center my-5" style="font-size : 45px">Səbət Boşdur!</p> }
+else
+{
 <div class="wrap cf">
-    <div class="heading cf">
-        <h1>Your Basket</h1>
-        <a href="#" class="continue">Continue Shopping</a>
+    <div class="heading cf me-3" style="text-align:center;">
+        <h1 style="margin:22px 0;">Your Basket</h1>
     </div>
     <div class="cart">
-        <ul class="cartWrap">
+        <ul class="cartWrap" style="display:flex;list-style:none;align-items:center;justify-content:space-between;flex-wrap:wrap;">
             @foreach (BasketVM product in Model)
             {
 <li class="items odd">
     <div class="infoWrap">
         <div class="cartSection">
-            <img src="~/img/@product.Image" alt="" class="itemImg" />
-            <h3>@product.Title</h3>
+            <img src="~/img/@product.Image" alt="" class="itemImg" style="width:70%; margin:25px 0;display:flex;justify-content:center;align-items:center;" />
+            <h3 style="margin-left: 41px;">@product.Title</h3>
 
-            <p> <input type="text" class="qty" placeholder="@product.Count" /> x $@product.Price.00</p>
-            <div class="flex-w bo5 of-hidden w-size17">
+            @*<p> <input type="text" class="qty" placeholder="@product.Count" /> x $@product.Price.00</p>*@
+            <div class="flex-w bo5 of-hidden w-size17"style="margin-top:40px">
                 <a asp-controller="Product" asp-action="DecProductCount" asp-route-id="@product.Id">
                     <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
                 </a>
@@ -32,32 +31,26 @@
                 </a>
 
             </div>
-            <p class="stockStatus"> In Stock</p>
         </div>
 
 
-        <div class="prodTotal cartSection">
-            <p>$@(product.Count*product.Price)</p>
+        <div class="prodTotal cartSection cartSection removeWrap" style="display:flex;margin-left:41px;">
+            <p style="margin:8px 45px;font-size:25px;">$@(product.Count*product.Price)</p>
+            <a class="remove" id="remove" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@product.Id" style="margin-top:7px;font-size:25px;">x</a>
         </div>
-        <div class="cartSection removeWrap">
+        @*<div class="cartSection removeWrap">
             <a class="remove" id="remove" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@product.Id">x</a>
-        </div>
+        </div>*@
     </div>
-</li>                }
+</li>
+           }
 
         </ul>
     </div>
-
-    <div class="promoCode">
-        <label for="promo">Have A Promo Code?</label><input type="text" name="promo" placholder="Enter Code" />
-        <a href="#" class="btn"></a>
-    </div>
-
-    <div class="subtotal cf">
+    <div class="subtotal cf"style="margin-top:90px;">
         <ul>
-            <li class="totalRow final list-group-item "><span class="label">Total</span><span class="value">$@ViewBag.Total.00</span></li>
+            <li class="totalRow final list-group-item " style="width:80%;"><span class="label">Total</span><span class="value">$@ViewBag.Total.00</span></li>
         </ul>
-        <a href="#" class="btn continue">Checkout</a>
     </div>
 </div>}
 
