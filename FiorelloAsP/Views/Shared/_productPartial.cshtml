@@ -1,0 +1,24 @@
+﻿@using FiorelloAsP.Models
+@model List<Product>
+
+@foreach (Product pr in Model)
+{
+<div class="col-sm-6 col-md-4 col-lg-3 mt-3">
+    <div class="product-item text-center">
+        <div class="img">
+            <a href="">
+                <img src="~/img/@pr.Image" class="img-fluid" alt="">
+            </a>
+        </div>
+        <div class="title mt-3">
+            <h6>@pr.Title</h6>
+        </div>
+        <div class="price">
+            <a class="addBasket" asp-controller="Product" asp-action="AddToBasket" asp-route-id="@pr.Id">
+                <span class="text-black-50">Add to cart</span>
+            </a>
+
+            <span class="text-black-50">$@pr.Price</span>
+        </div>
+    </div>
+</div>}

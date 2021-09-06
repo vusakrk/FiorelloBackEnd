@@ -1,0 +1,63 @@
+﻿@using FiorelloAsP.ViewModels
+@model List<BasketVM>
+@{ ViewData["Title"] = "Basket"; }
+@if (ViewBag.BasketCount == 0)
+{
+<p class="text-center my-5" style="font-size : 45px">Your basket is Empty!</p> }
+            else
+            {
+<div class="wrap cf">
+    <div class="heading cf">
+        <h1>Your Basket</h1>
+        <a href="#" class="continue">Continue Shopping</a>
+    </div>
+    <div class="cart">
+        <ul class="cartWrap">
+            @foreach (BasketVM product in Model)
+            {
+<li class="items odd">
+    <div class="infoWrap">
+        <div class="cartSection">
+            <img src="~/img/@product.Image" alt="" class="itemImg" />
+            <h3>@product.Title</h3>
+
+            <p> <input type="text" class="qty" placeholder="@product.Count" /> x $@product.Price.00</p>
+            <div class="flex-w bo5 of-hidden w-size17">
+                <a asp-controller="Product" asp-action="DecProductCount" asp-route-id="@product.Id">
+                    <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
+                </a>
+                <input class="size8 m-text18 t-center num-product countInput" type="text" name="num-product1" value="@product.Count">
+                <a asp-controller="Product" asp-action="IncProductCount" asp-route-id="@product.Id">
+                    <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
+                </a>
+
+            </div>
+            <p class="stockStatus"> In Stock</p>
+        </div>
+
+
+        <div class="prodTotal cartSection">
+            <p>$@(product.Count*product.Price)</p>
+        </div>
+        <div class="cartSection removeWrap">
+            <a class="remove" id="remove" asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@product.Id">x</a>
+        </div>
+    </div>
+</li>                }
+
+        </ul>
+    </div>
+
+    <div class="promoCode">
+        <label for="promo">Have A Promo Code?</label><input type="text" name="promo" placholder="Enter Code" />
+        <a href="#" class="btn"></a>
+    </div>
+
+    <div class="subtotal cf">
+        <ul>
+            <li class="totalRow final list-group-item "><span class="label">Total</span><span class="value">$@ViewBag.Total.00</span></li>
+        </ul>
+        <a href="#" class="btn continue">Checkout</a>
+    </div>
+</div>}
+
