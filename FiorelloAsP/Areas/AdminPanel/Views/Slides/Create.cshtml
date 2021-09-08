@@ -1,0 +1,30 @@
+﻿@model Slider
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row" style=" display: flex; align-items: center; justify-content: center;margin-top:80px">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Create Slide</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form method="post" enctype="multipart/form-data">
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="Photo">Name</label>
+                    <input asp-for="@Model.Photos" class="form-control" placeholder="Photo" accept="image/*">
+                    <span asp-validation-for="@Model.Photos" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a class="btn btn-light" asp-action="Index">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+@*@section Script{
+    <partial name="_ValidationPartial" />
+}*@

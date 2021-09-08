@@ -27,7 +27,7 @@ namespace FiorelloAsP.Areas.AdminPanel.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(string Description, Category category)
+        public IActionResult Create(Category category)
         {
             if (!ModelState.IsValid)
             {
@@ -75,14 +75,15 @@ namespace FiorelloAsP.Areas.AdminPanel.Controllers
             }
             category1.Name = category.Name;
             category1.Description = category.Description;
+            //_context.Categories.Update(category);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-       public IActionResult Delete(int?id)
+       public  IActionResult Delete(int?id)
         {
             if (id == null) 
                 NotFound();
-            Category category = _context.Categories.Find(id);
+            Category category =  _context.Categories.FirstOrDefault(c=>c.Id==id);
             if (category == null) 
                 return NotFound();
             return View(category);
@@ -93,10 +94,18 @@ namespace FiorelloAsP.Areas.AdminPanel.Controllers
         {
             if (id == null) 
                 return NotFound();
-            Category category = _context.Categories.Find(id);
+            Category category =   _context.Categories.FirstOrDefault(c=>c.Id==id);
             if (category == null)
                 return NotFound();
-            _context.Categories.Remove(category);
+            if (category.HasDeleted)
+            {
+                category.HasDeleted = false;
+            }
+            else
+            {
+                category.HasDeleted = true;
+            }
+             //_context.Categories.Remove(category);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }

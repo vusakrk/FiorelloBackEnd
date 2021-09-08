@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Slider>
+@{
+    int count = 1;
+    ViewData["Title"] = "Index";
+}
+
+
+<section class="content">
+    <div class="container">
+        <div class="row" style="display:flex;align-items:center;justify-content:center;margin-top:60px">
+            <div class="col-12 mb-2" style="margin-left:570px">
+                <a asp-action="Create" class="btn  btn-success">Create</a>
+            </div>
+            <div class="col-md-6">
+                <div class="card" style="width:900px;margin-top:0 !important;">
+                    <div class="card-header">
+                        <h3 class="card-title">Slides</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">Number</th>
+                                    <th>Slide Name</th>
+                                    <th>Setting</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var slide in Model)
+                                {
+                                    <tr>
+                                        <td>@count</td>
+                                        <td><img src="~/img/@slide.Image" style="height:300px;width:450px" alt="" /></td>
+                                        <td>
+                                            <a asp-action="Update" asp-route-id="@slide.Id" class="btn  btn-warning"><i class="fas fa-edit"></i></a>
+                                            <a asp-action="Delete" asp-route-id="@slide.Id" class="btn  btn-danger">
+                                                <i class="far fa-trash-alt"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    count++;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.card -->
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>

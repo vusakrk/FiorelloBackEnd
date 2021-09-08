@@ -11,13 +11,13 @@
                 <form class="forms-sample" method="post">
                     <div class="form-group">
                         <label></label>
-                        <input class="form-control"  name="name" placeholder="Name">
+                        <input class="form-control" asp-for="Name"  name="name" placeholder="Name">
                         <span class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <label></label>
-                        <textarea asp-validation-for="Name" class="form-control" rows="4"></textarea>
+                        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
                         <span class="text-danger"></span>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Update</button>
