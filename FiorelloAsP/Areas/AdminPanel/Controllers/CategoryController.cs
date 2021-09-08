@@ -27,7 +27,7 @@ namespace FiorelloAsP.Areas.AdminPanel.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Category category)
+        public IActionResult Create(string Description, Category category)
         {
             if (!ModelState.IsValid)
             {
@@ -54,7 +54,6 @@ namespace FiorelloAsP.Areas.AdminPanel.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ActionName("Update")]
         public async Task<IActionResult> Update(int? id,Category category)
         {
             if (!ModelState.IsValid)
