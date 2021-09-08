@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Index";
+    int count = 1;
+}
+
+<div class="content-wrapper">
+    <section class="content" style="margin-top: 169px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 my-3">
+                    <a asp-action="Create" class="btn-lg btn-success">Create</a>
+                </div>
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title text-bold">Categories</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th> @count</th>
+                                        <th>Category Name</th>
+                                        <th>Description</th>
+                                        <th>Is Deleted</th>
+                                        <th>Settings</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var ct in Model)
+                                    {
+                                        <tr>
+                                            <td>@count</td>
+                                            <td>@ct.Name</td>
+                                            <td>@ct.Description</td>
+                                            <td>@(ct.HasDeleted? "Deleted":"Active")</td>
+                                            <td>
+                                                <a asp-action="Detail" asp-route-id="@ct.Id" class="btn btn-info">
+                                                    <span class="material-icons">
+                                                        info
+                                                    </span>
+                                                </a>
+                                                <a asp-action="Update" asp-route-id="@ct.Id" class="btn btn-warning mx-2">
+                                                    <span class="material-icons">
+                                                        edit
+                                                    </span>
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@ct.Id" class="btn btn-danger">
+                                                    <span class="material-icons @(ct.HasDeleted? "check_circle_outline" : "radio_button_unchecked")">
+                                                        delete_sweep
+                                                    </span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        count++;
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+</div>

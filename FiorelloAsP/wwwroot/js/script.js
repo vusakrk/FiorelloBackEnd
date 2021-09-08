@@ -16,6 +16,7 @@ $(document).ready(function () {
             })
     });
     $(document).on('click', '#remove', function () {
+        //event.preventDefault();
         $(this).parent().parent().remove();
     })
     $(document).on('click', '.minus', function (e) {
@@ -25,13 +26,16 @@ $(document).ready(function () {
         }
     })
     $(document).on('click', '.plus', function (e) {
+        event.preventDefault();
         this.previousElementSibling.value++;
     })
-    let basketCount = $('rounded-circle');
+    let basketCount = $('.rounded-circle');
     $.ajax({
         url: '/Product/GetBasketCount',
         type: 'GET',
         success: function (res) {
+            let totalCount = document.getElementById('totalCount');
+            totalCount.innerHTML = res.basketCount;
             basketCount.text(res);
             
         }

@@ -133,7 +133,7 @@
                             <li class="nav-item my-auto shop-cart">
                                 <a asp-controller="Product" asp-action="Basket">
                                     <i class="fas fa-shopping-bag"></i>
-                                    <sup class="rounded-circle">0</sup>
+                                    <sup class="rounded-circle" id="totalCount">@ViewBag.Count</sup>
                                 </a>
                                 <span>CART ($@ViewBag.BasketTotal)</span>
                                 <ul class="list-unstyled py-3">

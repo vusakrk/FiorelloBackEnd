@@ -28,6 +28,7 @@ namespace FiorelloAsP.ViewComponents
                 {
                     Product pro = await _context.Products.FindAsync(pr.Id);
                     ViewBag.BasketTotal += pro.Price * pr.Count;
+                    ViewBag.Count = 0;
                 }
 
             }
