@@ -11,7 +11,7 @@ namespace FiorelloAsP.Models
     public class Slider
     {
         public int Id { get; set; }
-        [Required, StringLength(150)]
+        [Required]
         public string Image { get; set; }
         [NotMapped, Required]
         public IFormFile Photo { get; set; }

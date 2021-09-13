@@ -11,6 +11,8 @@
     <Compile Remove="Migrations\20210906083635_AboutSectionsTablesAdded.Designer.cs" />
     <Compile Remove="Migrations\20210906083718_AboutSectionsTablesAdded.cs" />
     <Compile Remove="Migrations\20210906083718_AboutSectionsTablesAdded.Designer.cs" />
+    <Compile Remove="Migrations\20210913201725_Account.cs" />
+    <Compile Remove="Migrations\20210913201725_Account.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,12 +41,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.18" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.18" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.18" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.18">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="3.1.18" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="3.1.18" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="X.PagedList.Mvc.Core" Version="8.1.0" />
   </ItemGroup>

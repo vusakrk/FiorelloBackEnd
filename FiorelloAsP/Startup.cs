@@ -1,15 +1,14 @@
 using FiorelloAsP.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Security.Principal;
+using FiorelloAsP.Models;
 
 namespace FiorelloAsP
 {
@@ -26,6 +25,21 @@ namespace FiorelloAsP
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddIdentity<AppUser, IdentityRole>(identityOptions =>
+            {
+                identityOptions.Password.RequireDigit = true;
+                identityOptions.Password.RequireLowercase = true;
+                identityOptions.Password.RequireUppercase = true;
+                identityOptions.Password.RequiredLength = 8;
+                identityOptions.Password.RequireNonAlphanumeric = true;
+
+                identityOptions.User.RequireUniqueEmail = true;
+                identityOptions.Lockout.MaxFailedAccessAttempts = 3;
+                identityOptions.Lockout.AllowedForNewUsers = true;
+                identityOptions.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+
+            }).AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders().AddErrorDescriber<IdentityErrorDescriber>();
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(_config.GetConnectionString("Default"));
@@ -41,6 +55,8 @@ namespace FiorelloAsP
             }
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseStaticFiles();
             app.UseEndpoints(endpoints =>
             {
